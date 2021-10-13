@@ -1,20 +1,46 @@
 import requests, json, yaml
 
 
-uri = 'https://api.7thsensepsychics.com/pricing/us'
 
-print(f'GET {uri} ...')
+def get_bearer_token():
+    with open('config.yml') as f:    
+        config_vars = yaml.safe_load(f)
+        
+    return config_vars['bearer_token']
+        
 
-response = requests.get(uri)
 
-print(f'Status Code: {response.status_code}')
-
-response_json = response.json()
-
-print(response_json['data']['country'])
-
-with open('config.yml') as f:    
-    config_vars = yaml.safe_load(f)
+def request_tweet(tweet_id):    
+    '''
+    source: https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference
+    '''
     
-print(config_vars['api_key'])    
+    bearer = get_bearer_token()
+    headers = {'Authorization': f'Bearer {bearer}'}
+    
+    api_base_url = "https://api.twitter.com/2"
+    uri = f'{api_base_url}/tweets/{tweet_id}' # a specific tweet
+    
+    print(f'GET {uri} ...')
+    response = requests.get(uri, headers=headers)
+    
+    print(f'Status Code: {response.status_code}')    
+    response_json = response.json() 
+    
+    return response_json
+
+
+
+
+tweet = request_tweet(1448024326750539778)  
+
+print(tweet)   
+    
+
+
+    
+
+
+
+
 
