@@ -2,7 +2,7 @@
 This is the repository for the Strategic Thinking Project to be used for all four phases.
 
 
-## request library
+## Using Requests library
 
 ### How to install:
 ```
