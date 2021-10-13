@@ -1,4 +1,4 @@
-import requests, json
+import requests, json, yaml
 
 
 uri = 'https://api.7thsensepsychics.com/pricing/us'
@@ -13,8 +13,8 @@ response_json = response.json()
 
 print(response_json['data']['country'])
 
+with open('config.yml') as f:    
+    config_vars = yaml.safe_load(f)
+    
+print(config_vars['api_key'])    
 
-
-# Key yZp9fri3h634hFKskSNH5K6uT
-# Secret i241mgTxVisQtFA5iXVcyL2uO8fwohbSnWvAVDH1NbmQgWVdrc
-# Bearer Token AAAAAAAAAAAAAAAAAAAAAL2mUgEAAAAA%2FrG0K%2FxOmlRkU9dogGYo%2BTD%2BimU%3DHcHmpKK0NTLRsk6bIP97fQ67tmcQLw9uwDtuzGyw1OTsgladi3
