@@ -1,13 +1,10 @@
 # main.py
 #Query Twitter via search term(s) and output CSV file
 #Author:Ryan Foster
-
-import os
-
 # tweepy is a library/api available to use
 import tweepy as tw
 import pandas as pd
-
+# created a config file with Twitter tokens and secrets
 from config import *
 
 # As Victor discussed earlier, create a config file and put your keys, secrets, tokens in it as variables
@@ -17,6 +14,8 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tw.API(auth, wait_on_rate_limit=True)
 
 # pick a search term to search tweets by
+# here i am searching for '#bitcoin' or 'bitcoin' or 'BTC', but excluding anything with 'airdrop'
+# this demonstrates how we can filter out undesired data
 search_terms = "#bitcoin OR bitcoin OR BTC -airdrop filter:verified"
 #for now just use todays date, because there are restrictions on how far back we can search TBC
 search_from_date = "2021-10-16"
